@@ -7,6 +7,7 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import express from "express";
 import bodyParser from "body-parser";
@@ -117,6 +118,18 @@ app.post("/login", function (req, res) {
       const errorCode = error.code;
       const errorMessage = error.message;
       console.log(errorMessage);
+    });
+});
+
+app.post("/logout", function (req, res) {
+  signOut(auth)
+    .then(() => {
+      user = null;
+
+      res.render("login", {});
+    })
+    .catch((error) => {
+      res.render("index", {});
     });
 });
 ////   GET METHODS
