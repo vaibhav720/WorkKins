@@ -12,7 +12,7 @@
     <title>Workins</title>
   </head>
   <body>
-    <section class="vh-100 gradient-custom">
+    <section class="gradient-custom">
       <div class="container py-5 h-100">
         <div class="row justify-content-center align-items-center h-100">
           <div class="col-12 col-lg-9 col-xl-7">
@@ -21,20 +21,23 @@
               style="border-radius: 15px"
             >
               <div class="card-body p-4 p-md-5">
-                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration Form</h3>
+                <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Manager Signup Form</h3>
                 <form action="/msignup" method="post">
                   <div class="row">
                     <div class="col-md-6 mb-4">
                       <div class="form-outline">
-                        <input
+                        <input 
                           type="text"
                           name="fname"
                           id="firstName"
                           class="form-control form-control-lg"
+                          placeholder="First Name"
+                          required
+                          autofocus
+
                         />
-                        <label class="form-label" for="firstName"
-                          >First Name</label
-                        >
+                        <!-- <label class="form-label" for="firstName">First Name</label -->
+                        
                       </div>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -44,10 +47,10 @@
                           name="lname"
                           id="lastName"
                           class="form-control form-control-lg"
+                          placeholder="Last Name"
+                          required
                         />
-                        <label class="form-label" for="lastName"
-                          >Last Name</label
-                        >
+                        
                       </div>
                     </div>
                   </div>
@@ -56,14 +59,17 @@
                     <div class="col-md-6 mb-4 d-flex align-items-center">
                       <div class="form-outline datepicker w-100">
                         <input
-                          type="text"
+                          type="date"
+                          placeholder="Date of Birth"
                           name="bday"
                           class="form-control form-control-lg"
                           id="birthdayDate"
+                          
+                          required
                         />
-                        <label for="birthdayDate" class="form-label"
-                          >Birthday</label
-                        >
+                        <!-- <label for="birthdayDate" class="form-label"
+                          >Date of Birth</label
+                        > -->
                       </div>
                     </div>
                     <div class="col-md-6 mb-4">
@@ -75,7 +81,7 @@
                           type="radio"
                           name="gen"
                           id="femaleGender"
-                          value="option1"
+                          value="female"
                           checked
                         />
                         <label class="form-check-label" for="femaleGender"
@@ -89,7 +95,7 @@
                           type="radio"
                           name="gen"
                           id="maleGender"
-                          value="option2"
+                          value="male"
                         />
                         <label class="form-check-label" for="maleGender"
                           >Male</label
@@ -102,7 +108,7 @@
                           type="radio"
                           name="gen"
                           id="otherGender"
-                          value="option3"
+                          value="other"
                         />
                         <label class="form-check-label" for="otherGender"
                           >Other</label
@@ -119,24 +125,24 @@
                           id="emailAddress"
                           class="form-control form-control-lg"
                           name="email"
+                          placeholder="Email Address"
                           required
                         />
-                        <label class="form-label" for="emailAddress"
-                          >Email</label
-                        >
+                        
                       </div>
                     </div>
                     <div class="col-md-6 mb-4 pb-2">
                       <div class="form-outline">
                         <input
-                          type="tel"
+                          type="string"
                           name="call"
                           id="phoneNumber"
                           class="form-control form-control-lg"
+                          placeholder="Phone Number"
+                          required
+
                         />
-                        <label class="form-label" for="phoneNumber"
-                          >Phone Number</label
-                        >
+                        
                       </div>
                     </div>
                   </div>
@@ -146,10 +152,12 @@
                         <input
                           type="text"
                           id="branch"
-                          name="branch"
-                          class="form-control form-control-lg"
+                          name="tid"
+                          placeholder="Team ID"
+                          class="form-control form-control-lg"\
+                          required
                         />
-                        <label class="form-label" for="branch">Branch</label>
+                        <!-- <label class="form-label" for="tid" required>Team ID</label> -->
                       </div>
                     </div>
                     <div class="col-md-6 mb-4 pb-2">
@@ -158,11 +166,11 @@
                           type="text"
                           id="managerid"
                           name="mid"
+                          placeholder="Manager ID"
                           class="form-control form-control-lg"
+                          required
                         />
-                        <label class="form-label" for="managerid"
-                          >Manager ID</label
-                        >
+                        
                       </div>
                     </div>
                   </div>
@@ -174,13 +182,12 @@
                           type="password"
                           id="password"
                           name="password"
+                          placeholder="Password"
                           class="form-control form-control-lg"
                           name="password"
                           required
                         />
-                        <label class="form-label" for="password"
-                          >Password</label
-                        >
+                        
                       </div>
                     </div>
                     <div class="col-md-6 mb-4 pb-2">
@@ -189,16 +196,33 @@
                           type="password"
                           id="Confirm Password"
                           name="cpassword"
+                          placeholder="Confirm Password"
                           class="form-control form-control-lg"
+                          required
                         />
-                        <label class="form-label" for="confirmPassword"
-                          >Confirm Password</label
-                        >
+                        
                       </div>
                     </div>
                   </div>
 
                   <div class="row">
+                    <div class="col-md-12 mb-4 pb-2">
+                      <div class="form-outline">
+                        <input
+                          type="text"
+                          id="branch"
+                          name="address"
+                          placeholder="Address"
+                          class="form-control form-control-lg"\
+                          required
+                        />
+                        
+                      </div>
+                    </div>
+                    
+                  </div>
+
+                  <!-- <div class="row">
                     <div class="col-12">
                       <select name="position" class="select form-control-lg">
                         <option value="1" disabled>Choose option</option>
@@ -209,7 +233,8 @@
                         >Choose option</label
                       >
                     </div>
-                  </div>
+                  </div> -->
+
 
                   <div class="mt-4 pt-2">
                     <input
