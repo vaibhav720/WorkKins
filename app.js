@@ -41,12 +41,13 @@ app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 /////  global variables
-
-//////    POST METHOD
 const auth = getAuth();
 const db = getFirestore();
 let user = null;
 
+//////    POST METHOD
+
+//                                             Sign UP
 app.post("/signup", function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
@@ -99,7 +100,7 @@ app.post("/signup", function (req, res) {
       // ..
     });
 });
-
+//                                              post login
 app.post("/login", function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
@@ -120,7 +121,7 @@ app.post("/login", function (req, res) {
       console.log(errorMessage);
     });
 });
-
+//                                             post logout
 app.post("/logout", function (req, res) {
   signOut(auth)
     .then(() => {
@@ -132,8 +133,13 @@ app.post("/logout", function (req, res) {
       res.render("index", {});
     });
 });
-////   GET METHODS
+//                                           post profile
+app.post("/profile",function(req,res){
+  res.render("editprofile",{});
+});
 
+////                                          GET METHODS
+//                                            get index
 app.get("/", function (req, res) {
   res.render("index", {});
 });
@@ -144,6 +150,11 @@ app.get("/signup", function (req, res) {
 
 app.get("/login", function (req, res) {
   res.render("login", {});
+});
+
+
+app.get("/editprofile", function (req, res) {
+  res.render("editprofile", {});
 });
 
 app.get("/profile", async function (req, res) {

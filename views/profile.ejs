@@ -33,7 +33,7 @@
             <div class="profile-head">
               <h5><%=manager.fname%> <%= manager.lname %></h5>
               <h6><%= manager.email %></h6>
-              <p class="proile-rating">RANKINGS : <span>8/10</span></p>
+              <p class="proile-rating">MOOD: <span>😁</span></p>
               <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item">
                   <a
@@ -63,27 +63,29 @@
             </div>
           </div>
           <div class="col-md-2">
+            <form action="/profile" method="post">
             <input
               type="submit"
               class="profile-edit-btn"
               name="btnAddMore"
               value="Edit Profile"
             />
+          </form>
           </div>
         </div>
         <div class="row">
           <div class="col-md-4">
             <div class="profile-work">
-              <p>WORK LINK</p>
-              <a href="">Website Link</a><br />
-              <a href="">Bootsnipp Profile</a><br />
-              <a href="">Bootply Profile</a>
-              <p>SKILLS</p>
-              <a href="">Web Designer</a><br />
-              <a href="">Web Developer</a><br />
-              <a href="">WordPress</a><br />
-              <a href="">WooCommerce</a><br />
-              <a href="">PHP, .Net</a><br />
+              <p>Hobbies</p>
+              <a href="">Music</a><br />
+              <a href="">Cricket</a><br />
+              <a href="">Swimming</a>
+              <p>Favourite</p>
+              <a href="">Food: Noodles</a><br />
+              <a href="">Game: Super Mario</a><br />
+              <a href="">Book: Harry Potter</a><br />
+              <a href="">Place to travel: Italy</a><br />
+              <a href="">Movie/Series: Friends</a><br />
             </div>
           </div>
           <div class="col-md-8">
