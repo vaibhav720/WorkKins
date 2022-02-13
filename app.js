@@ -49,6 +49,10 @@ let user = null;
 
 //                                             Sign UP
 app.post("/signup", function (req, res) {
+  if(req.body.register==="Login")
+  {
+    res.render("login", {});
+  }
   var email = req.body.email;
   var password = req.body.password;
 
@@ -100,6 +104,12 @@ app.post("/signup", function (req, res) {
       // ..
     });
 });
+
+
+app.post("/tologin",function(req,res){
+  res.render("login",{});
+});
+
 //                                              post login
 app.post("/login", function (req, res) {
   var email = req.body.email;
