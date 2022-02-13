@@ -12,13 +12,8 @@ import {
 import express from "express";
 import bodyParser from "body-parser";
 import { collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
-
 import ejs from "ejs";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyCXl0dia4GIpcMpkIjDjs_2p-LvRy8GXdg",
   authDomain: "workkins.firebaseapp.com",
@@ -32,10 +27,8 @@ const firebaseConfig = {
 // Initialize Firebase
 const fireapp = initializeApp(firebaseConfig);
 
-//jshint esversion:6
-
+// express app
 const app = express();
-
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -47,12 +40,19 @@ let user = null;
 
 //////    POST METHOD
 
-//                                             Sign UP
-app.post("/signup", function (req, res) {
-  if(req.body.register==="Login")
+app.post("/initsignup",function(req,res){
+  if(req.body.position === "Employee")
   {
-    res.render("login", {});
+    res.render("emp_Sign-up");
   }
+  else
+  {
+    res.render("Sign-up");
+  }
+})
+// Signup
+app.post("/msignup", function (req, res) {
+  
   var email = req.body.email;
   var password = req.body.password;
 
@@ -105,12 +105,12 @@ app.post("/signup", function (req, res) {
     });
 });
 
-
-app.post("/tologin",function(req,res){
-  res.render("login",{});
+// Redirecting to Login Page from signup page
+app.post("/tologin", function (req, res) {
+  res.render("login", {});
 });
 
-//                                              post login
+// Login
 app.post("/login", function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
@@ -131,7 +131,8 @@ app.post("/login", function (req, res) {
       console.log(errorMessage);
     });
 });
-//                                             post logout
+
+// Logout
 app.post("/logout", function (req, res) {
   signOut(auth)
     .then(() => {
@@ -143,30 +144,46 @@ app.post("/logout", function (req, res) {
       res.render("index", {});
     });
 });
-//                                           post profile
-app.post("/profile",function(req,res){
-  res.render("editprofile",{});
+
+// Post Profile
+app.post("/profile", function (req, res) {
+  res.render("editprofile", {});
 });
 
-////                                          GET METHODS
-//                                            get index
+// GET Methods
+// index
 app.get("/", function (req, res) {
   res.render("index", {});
 });
 
+//signup
 app.get("/signup", function (req, res) {
+  res.render("initsignup", {});
+});
+
+//  manager signup
+app.get("/msignup", function (req, res) {
   res.render("Sign-up", {});
 });
 
+// emp signup
+
+app.get("/esignup", function (req, res) {
+  res.render("emp_Sign-up", {});
+});
+
+
+// login
 app.get("/login", function (req, res) {
   res.render("login", {});
 });
 
-
+//editprofile
 app.get("/editprofile", function (req, res) {
   res.render("editprofile", {});
 });
 
+// get profile
 app.get("/profile", async function (req, res) {
   if (user) {
     const email = user.email;
@@ -185,7 +202,7 @@ app.get("/profile", async function (req, res) {
   }
 });
 
-////       Port 300000
+////       Port 3000
 app.listen(3000, function () {
   console.log("Server started on port 3000");
 });
