@@ -24,6 +24,8 @@
     "express": "^4.17.2",
     "firebase": "^9.6.6",
     "newsapi": "^2.4.1",
-    "nodemon": "^2.0.15"
+    "node-popup": "^0.1.14",
+    "nodemon": "^2.0.15",
+    "popups": "^1.1.3"
   }
 }

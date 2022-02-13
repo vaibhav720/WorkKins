@@ -1,5 +1,3 @@
-//Firebase Configuration
-
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
@@ -12,6 +10,7 @@ import {
 import express from "express";
 import bodyParser from "body-parser";
 import { collection, addDoc, setDoc, doc, getDoc } from "firebase/firestore";
+
 import ejs from "ejs";
 
 const firebaseConfig = {
@@ -40,22 +39,22 @@ let user = null;
 
 //////    POST METHOD
 
-app.post("/initsignup",function(req,res){
-  if(req.body.position === "Employee")
-  {
+app.post("/initsignup", function (req, res) {
+  if (req.body.position === "Employee") {
     res.render("emp_Sign-up");
-  }
-  else
-  {
+  } else {
     res.render("Sign-up");
   }
-})
-// Signup
+});
+// Manager Signup
 app.post("/msignup", function (req, res) {
-  
   var email = req.body.email;
   var password = req.body.password;
+  var cpassword = req.body.cpassword;
 
+  if (password != cpassword) {
+    res.render("Sign-up", {});
+  }
   console.log("Till password");
 
   createUserWithEmailAndPassword(auth, email, password)
@@ -74,11 +73,12 @@ app.post("/msignup", function (req, res) {
 
       var call = req.body.call;
 
-      var branch = req.body.branch;
+      var tid = req.body.tid;
 
       var mid = req.body.mid;
 
-      var cpassword = req.body.cpassword;
+      var address = req.body.address;
+
       try {
         setDoc(doc(db, "Manager", email), {
           fname: fname,
@@ -86,9 +86,10 @@ app.post("/msignup", function (req, res) {
           bday: bday,
           gen: gen,
           call: call,
-          branch: branch,
+          tid: tid,
           mid: mid,
           email: email,
+          address: address,
         });
       } catch (e) {
         console.error("Error adding document: ", e);
@@ -105,6 +106,78 @@ app.post("/msignup", function (req, res) {
     });
 });
 
+// Employee Signup
+app.post("/esignup", function (req, res) {
+  var email = req.body.email;
+  var password = req.body.password;
+  var cpassword = req.body.cpassword;
+
+  if (password != cpassword) {
+    res.send(1, "showAlert");
+  }
+  console.log("Till password");
+
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+
+      user = userCredential.user;
+
+      var fname = req.body.fname;
+
+      var lname = req.body.lname;
+
+      var bday = req.body.bday;
+
+      var gen = req.body.gen;
+
+      var call = req.body.call;
+
+      var tid = req.body.tid;
+
+      var gid = req.body.gid;
+
+      var address = req.body.address;
+
+      var eid = req.body.eid;
+      var nation = req.body.nation;
+
+      var spcl = req.body.spcl;
+
+      var branch = req.body.branch;
+      var state = req.body.state;
+      var nation = req.body.nation;
+      try {
+        setDoc(doc(db, "Employee", eid), {
+          fname: fname,
+          lname: lname,
+          bday: bday,
+          gen: gen,
+          call: call,
+          tid: tid,
+          gid: gid,
+          eid: eid,
+          nation: nation,
+          spcl: spcl,
+          branch: branch,
+          state: state,
+          email: email,
+          address: address,
+        });
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+      res.render("index", {});
+
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorMessage);
+      // ..
+    });
+});
 // Redirecting to Login Page from signup page
 app.post("/tologin", function (req, res) {
   res.render("login", {});
@@ -171,7 +244,6 @@ app.get("/msignup", function (req, res) {
 app.get("/esignup", function (req, res) {
   res.render("emp_Sign-up", {});
 });
-
 
 // login
 app.get("/login", function (req, res) {
