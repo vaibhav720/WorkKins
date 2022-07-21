@@ -168,4 +168,15 @@ const clientLogout = catchAsyncErrors(async (req, res, next) => {
     });
 });
 
-module.exports = { clientSignUp, clientLogin, clientLogout, getClientDetails, editClientDetails, clientForgotPassword, clientResetPassword };
+
+const clientNews =  catchAsyncErrors(async (req, res, next) => {
+
+
+
+    res.status(200).json({
+        success: true,
+        message: "Logout successfull",
+    });
+})
+
+module.exports = { clientSignUp, clientLogin, clientLogout, getClientDetails, editClientDetails, clientForgotPassword, clientNews, clientResetPassword };
